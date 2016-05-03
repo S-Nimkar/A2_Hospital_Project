@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="../Styles/Minified-Styles/material.min.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/Minified-Styles/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="../Styles/master.css" media="screen,projection">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+
+<body>
+
+    <div class="container">
+        <div class="home_login_half_background"></div>
+    </div>
+
+    <header>
+	<nav class = "nav-bar-container">
+  		<div class="navbar-fixed">
+      		<a href="homelogin.html" class="brand-logo center-align tooltipped nav-bar-logo" data-position="right" data-delay="50" data-tooltip="Nimkar Medical Practitioners">NMP
+      		</a>
+		</div>
+	</nav>
+    </header>
+    <div class="container center-card">
+        <div class="mdl-card mdl-shadow--8dp offset-s6 mdl-shadow-mobile">
+            <span name="noselect" class="no_select_error">Please select a login type!</span>
+            <div class="mdl-card__title login-card-title center-align">
+                <text class="full-width">Login</text>
+            </div>
+            <div class="mdl-card__actions">
+                <form name="test" onsubmit="return loginalert()" action="../Database/loginpage.php" method='POST'>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text">
+                        <input class="mdl-textfield__input" type="text" name="user_name">
+                        <label class="mdl-textfield__label" for="sample3">Username</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text">
+                        <input class="mdl-textfield__input" type="password" name="pass_word">
+                        <label class="mdl-textfield__label" for="sample3">Password</label>
+                    </div>
+
+                    <div class="input-field col s12" name="selectbox">
+                        <select id="login_type" name="logintype" style="width: 80%;">
+                            <option value="" disabled selected>Choose your login-type</option>
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        <label class="select-label-loginpage">Select Login Type</label>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised waves-effect waves-light btn-large submit-button " type="submit">
+                        Sign In
+                    </button>
+                </form>
+                <!-- <div class = "login-line"></div> -->
+                    <a href="registration.html" class="mdl-button mdl-js-button mdl-button--raised waves-effect waves-light btn-large register-button">
+                        Register
+                    </a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <footer>
+        <div class="container right-align bottom-container-aboutus">
+            <a class="waves-effect waves-light modal-trigger" href="#modal1">
+                <i class="medium material-icons about-us-button tooltipped " data-position="top" data-delay="50" data-tooltip="About Us">live_help</i>
+            </a>
+            </a>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <div class="center-align">
+                        <h4>Information</h4>
+                        <div class="left-align">
+                            <p>Nimkar Medical Practitioners has been delivering thoughtful and caring service for the past 15 years. We seek to provide an atmosphere that is safe and pristene to all of our patients.</p>
+                            <br>
+                            <p>Our doctors are well respected within the medical community and have been practicing medicine for a median age of over 20 years.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    <script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>
+    <script type="text/javascript" src="../Scripts/Minified-Scripts/material.min.js"></script>
+    <script type="text/javascript" src="../Scripts/homelogin.js"></script>
+
+</body>
+
+</html>

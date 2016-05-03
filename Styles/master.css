@@ -1,0 +1,372 @@
+.home_login_half_background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #669999;
+    z-index: -1;
+    min-width: 350px;
+    height: 350px;
+}
+.homelogin-full-background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #669999;
+    z-index: -1;
+}
+.mdl-floating-text {
+    width: 90%;
+    margin-left: 5.08%;
+}
+.form-action {
+    width: 44.5%;
+    height: 52px;
+    margin-left: 3%;
+    float: left;
+}
+.mdl-card {
+    position: relative;
+    min-width: 100%;
+    margin-bottom: 5%;
+}
+.registration-card {
+    height: 100%;
+}
+.mdl-card__actions {
+    background-color: #fff;
+}
+.mdl-card__title {
+    background-color: #1f7872;
+    color: #fff;
+}
+.card-title-registration {
+    height: 70px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 35px;
+    color: #1f7872;
+    background-color: white;
+    border-bottom: 1px solid #9e9e9e;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(158, 158, 158);
+}
+.registration-card-actions {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.registration-text-inputs {
+    padding-top: 12px;
+    padding-bottom: 3px;
+}
+.login-card-title {
+    font-size: 35px;
+    font-weight: 200;
+}
+.dropdown-content {
+    margin-top: -70px;
+}
+nav {
+    color: #fff;
+    background-color: #003333;
+}
+.brand-logo {
+    margin-left: 20px;
+    font-family: serif;
+}
+.sidenavbrand-logo {
+        margin-left: 270px;
+    }
+.admin_text{
+	margin-left: 280px;
+}
+
+nav .nav-bar-logo {
+    font-size: 45px;
+    font-weight: 100;
+}
+.nav-bar-container {
+    min-height: 73px;
+    min-width: 100%;
+}
+.full-width {
+    width: 100%;
+}
+.nav-bar-cells {
+    height: 64px;
+    padding-top: 20%;
+}
+.about-us-button {
+    transition: 0.2s;
+    color: #72b095;
+    align-items: center;
+}
+.about-us-button:hover {
+    font-size: 6em;
+    margin-right: -14%;
+    margin-top: -7%;
+}
+.submit-button {
+    background-color: #1f7872;
+    color: #fff;
+    position: relative;
+    font-weight: 300;
+    width: 44.5%;
+    margin-left: 5.08%;
+    left: 0%;
+    bottom: 0%;
+}
+.submit-margin-bottom {
+    margin-bottom: 20px;
+    width: 30%;
+}
+.bottom-container-aboutus {
+    bottom: 0px;
+    max-width: 80%;
+    position: relative
+}
+.register-button {
+    left: 51%;
+    margin-top: -76px;
+    width: 44.5%;
+    font-weight: 300;
+    background-color: grey;
+}
+.register-button:hover {
+    background-color: #BDBDBD;
+}
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
+    color: black;
+}
+.mdl-textfield__error {
+    color: rgb(213, 0, 0);
+    position: absolute;
+    font-size: 12px;
+    margin-bottom: 2px;
+    visibility: hidden;
+    display: block;
+}
+.mdl-textfield.is-invalid .mdl-textfield__error {
+    visibility: visible;
+}
+input[type=text]:focus:not([readonly])+label {
+    color: #1f7872;
+}
+.center-card {
+    width: 350px;
+    height: 350px;
+    margin-top: 6%;
+}
+.registration-container {
+    margin-top: 30px;
+}
+.name-input-widths {
+    width: 42.175%;
+}
+.registration-input-widths {
+    width: 42.175%;
+    padding-bottom: 8px;
+}
+.registration-right {
+    margin-right: 50%;
+}
+.inputmargins {
+    margin-bottom: 4px;
+}
+.registration_success_content {
+    margin-top: 10%;
+    width: 60%;
+    min-width: 300px;
+    border-radius: 1em;
+}
+.registration_success_background {
+    background-color: #f0f0f2;
+    s
+}
+.registration_success_textmargins {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.registration_success_button {
+    margin-bottom: 20px;
+}
+.registration_success_title {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 2.7rem;
+    font-weight: 500;
+}
+.absolute {
+    position: absolute;
+}
+.relative {
+    position: relative;
+}
+.registration-spans {
+    margin-top: -50px;
+    margin-left: 116%;
+    width: 100%;
+}
+.no_select_error {
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 23.5px;
+    visibility: hidden;
+    color: rgba(213, 0, 0, 0.86);
+}
+.lower-registration-error {
+    margin-top: -70px;
+}
+.login_button_widths {
+    width: 47%;
+}
+.input-field {
+    width: 90%;
+    margin-left: 17px;
+}
+
+.select-label-loginpage{
+	margin-left: -10px;
+    font-size: 1rem;
+    margin-top: -6px;
+}
+.security-key-spans{
+	margin-bottom: 5px;
+}
+.security-key-input{
+	width: 100%;
+}
+.sidenav-brandlogo{
+	   font-size: 5rem;
+	   margin-top: 20px;
+	   margin-bottom: 100px;
+	   margin-left: 0px;
+       font-family: serif;
+}
+.patient_admin_width{
+	width: 70%;
+}
+ .admin_submitbox{
+    	margin-left: 280px;
+    }
+
+
+
+.visibility-false {
+    visibility: hidden;
+}
+.visibility-true-registrationpage {
+    visibility: visible;
+}
+.visibility-true {
+    visibility: visible;
+}
+.visibility-real-false {
+    visibility: hidden;
+}
+
+/*MEDIA SECTION (mobile phones n shit) */
+
+@media only screen and (max-width: 992px) {
+    .brand-logo {
+        margin-left: 0px;
+    }
+    .sidenavbrand-logo {
+        margin-left: 0px;
+    }
+    .admin_submitbox{
+    	margin-left: auto;
+    }
+
+    .patientadminbox{
+    	width: 85%;
+    	    min-width: 800px;
+    	margin-left: 20px;
+    }
+}
+@media only screen and (max-width: 502px) {
+    .container {
+        width: 100%;
+    }
+    .mdl-shadow-mobile {
+        box-shadow: 0px 0px 0px 0px;
+        border-radius: 0px;
+    }
+    .bottom-container-aboutus {
+        bottom: 0px;
+        text-align: center;
+        margin-top: 30%;
+    }
+    .center-card {
+        margin-top: 0%;
+    }
+    .nav-bar-container {
+        min-height: 0px;
+    }
+    .z-depth-1,
+    nav {
+        box-shadow: 0px 0px 0px 0px;
+    }
+    .center-card {
+        width: 100%;
+    }
+    .card-title-registration {
+        margin-top: 2%;
+    }
+    .registration-input-widths {
+        width: 90.5%;
+        padding-bottom: 16px;
+    }
+    .submit-margin-bottom {
+        margin-top: 20px;
+    }
+    .registration-spans {
+        margin-top: 12px;
+        margin-left: 0px;
+    }
+    .registration-text-inputs {
+        padding-top: 10px;
+        padding-bottom: 3px;
+    }
+    .lower-registration-error {
+        margin-left: 50%;
+    }
+    .registration_success_content {
+        border-radius: 0em;
+    }
+    .security-key-input{
+	max-width: 90%;
+	}
+    .registration_succes_margins {
+        width: 85%;
+    }
+    .visibility-true-registrationpage {
+        position: relative;
+    }
+    .input-field {
+        margin-left: 20.5px;
+    }
+    .red {
+        background-color: red;
+    }
+    .patientidwidth{
+    	width: 20px;
+    }
+    .patient_admin_width{
+	width: 800px;
+}
+    .admin_text{
+    	margin-left: 0px;
+    }
+    @media only screen and (max-height: 602px) {
+        .bottom-container-aboutus {
+            bottom: 0px;
+            text-align: center;
+            margin-top: 15%;
+        }
+        /**/
