@@ -1,0 +1,336 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 03, 2016 at 01:09 PM
+-- Server version: 5.5.42
+-- PHP Version: 7.0.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `Hospital_Database`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Administrator`
+--
+
+CREATE TABLE `Administrator` (
+  `Admin_ID` int(11) NOT NULL,
+  `Username` varchar(16) NOT NULL,
+  `Password` varchar(16) NOT NULL,
+  `SecurityKey` varchar(16) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Administrator`
+--
+
+INSERT INTO `Administrator` (`Admin_ID`, `Username`, `Password`, `SecurityKey`) VALUES
+(4, 'admin', 'password', 'letmein');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Completed_Forms`
+--
+
+CREATE TABLE `Completed_Forms` (
+  `Completed_Form_ID` int(11) NOT NULL,
+  `Patient_ID` int(11) NOT NULL,
+  `Doctor_ID` int(11) NOT NULL,
+  `Details_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Doctor`
+--
+
+CREATE TABLE `Doctor` (
+  `Doctor_ID` int(11) NOT NULL,
+  `Name` varchar(37) NOT NULL,
+  `Username` varchar(16) NOT NULL,
+  `Password` varchar(16) NOT NULL,
+  `SecurityKey` varchar(16) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COMMENT='Doctor''s Login Table';
+
+--
+-- Dumping data for table `Doctor`
+--
+
+INSERT INTO `Doctor` (`Doctor_ID`, `Name`, `Username`, `Password`, `SecurityKey`) VALUES
+(3, 'Jonathan_Smith', 'jsmith22', 'password', 'letmein');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Form_Details`
+--
+
+CREATE TABLE `Form_Details` (
+  `Form_Details_ID` int(11) NOT NULL,
+  `Standard_Info_ID` int(11) NOT NULL,
+  `Form_Type_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Form_Types`
+--
+
+CREATE TABLE `Form_Types` (
+  `Form_Type_ID` int(11) NOT NULL,
+  `Form_Type` enum('Medical_Entry','Radiology','Sonography') NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Form_Types`
+--
+
+INSERT INTO `Form_Types` (`Form_Type_ID`, `Form_Type`) VALUES
+(1, 'Radiology'),
+(2, 'Medical_Entry'),
+(3, 'Sonography');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jsmith22_table`
+--
+
+CREATE TABLE `jsmith22_table` (
+  `Doctors_Patient_ID` int(11) NOT NULL,
+  `ReferenceID` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jsmith22_table`
+--
+
+INSERT INTO `jsmith22_table` (`Doctors_Patient_ID`, `ReferenceID`) VALUES
+(2, 27),
+(4, 31);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Patient`
+--
+
+CREATE TABLE `Patient` (
+  `Patient_ID` int(11) NOT NULL,
+  `FName` varchar(16) NOT NULL COMMENT 'First Name',
+  `SName` varchar(16) NOT NULL COMMENT 'Surname',
+  `Email_address` varchar(50) NOT NULL COMMENT 'Email address of a patient',
+  `Username` varchar(16) NOT NULL COMMENT 'Username of the patient',
+  `Password` varchar(16) NOT NULL COMMENT 'Password of the patient'
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Patient`
+--
+
+INSERT INTO `Patient` (`Patient_ID`, `FName`, `SName`, `Email_address`, `Username`, `Password`) VALUES
+(27, 'Sumedh', 'Nimkar', 'nimkarsumedh@hotmail.co.uk', 'sumedh123', 'icerocks'),
+(29, 'Saket', 'Nimkar', 'example@gmail.com', 'saket123', 'saket123'),
+(31, 'ermal', 'laci', 'laciermal98@gmail.com', 'elaci', 'hi'),
+(32, 'Sumedh', 'Nimkar', 'nimkarsumedh@gmail.com', 'sumedh12', 's');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Requested_Forms`
+--
+
+CREATE TABLE `Requested_Forms` (
+  `Requested_Form_ID` int(11) NOT NULL,
+  `Patient_ID` int(11) NOT NULL,
+  `Doctor_ID` int(11) NOT NULL,
+  `Form_Type` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Requested_Forms`
+--
+
+INSERT INTO `Requested_Forms` (`Requested_Form_ID`, `Patient_ID`, `Doctor_ID`, `Form_Type`) VALUES
+(5, 29, 3, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Standard_Information`
+--
+
+CREATE TABLE `Standard_Information` (
+  `Standard_Info_ID` int(11) NOT NULL,
+  `Age` int(3) NOT NULL,
+  `Date_of_Birth` date NOT NULL,
+  `Full_Name` varchar(70) NOT NULL,
+  `Home_Number` int(14) NOT NULL,
+  `Mobile_Number` int(14) NOT NULL,
+  `PostCode` int(12) NOT NULL,
+  `Allergies` varchar(500) NOT NULL,
+  `Past_Conditions` varchar(1250) NOT NULL,
+  `Extra_Info` varchar(5000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Administrator`
+--
+ALTER TABLE `Administrator`
+  ADD PRIMARY KEY (`Admin_ID`),
+  ADD UNIQUE KEY `Admin_ID` (`Admin_ID`);
+
+--
+-- Indexes for table `Completed_Forms`
+--
+ALTER TABLE `Completed_Forms`
+  ADD PRIMARY KEY (`Completed_Form_ID`),
+  ADD KEY `Patient_ID` (`Patient_ID`),
+  ADD KEY `Doctor_ID` (`Doctor_ID`),
+  ADD KEY `Details_ID` (`Details_ID`);
+
+--
+-- Indexes for table `Doctor`
+--
+ALTER TABLE `Doctor`
+  ADD PRIMARY KEY (`Doctor_ID`),
+  ADD UNIQUE KEY `Doctor_ID` (`Doctor_ID`);
+
+--
+-- Indexes for table `Form_Details`
+--
+ALTER TABLE `Form_Details`
+  ADD PRIMARY KEY (`Form_Details_ID`),
+  ADD KEY `Standard_Info_ID` (`Standard_Info_ID`),
+  ADD KEY `Form_Type_ID` (`Form_Type_ID`);
+
+--
+-- Indexes for table `Form_Types`
+--
+ALTER TABLE `Form_Types`
+  ADD PRIMARY KEY (`Form_Type_ID`);
+
+--
+-- Indexes for table `jsmith22_table`
+--
+ALTER TABLE `jsmith22_table`
+  ADD PRIMARY KEY (`Doctors_Patient_ID`),
+  ADD KEY `ReferenceID` (`ReferenceID`);
+
+--
+-- Indexes for table `Patient`
+--
+ALTER TABLE `Patient`
+  ADD PRIMARY KEY (`Patient_ID`),
+  ADD UNIQUE KEY `Patient_ID` (`Patient_ID`);
+
+--
+-- Indexes for table `Requested_Forms`
+--
+ALTER TABLE `Requested_Forms`
+  ADD PRIMARY KEY (`Requested_Form_ID`),
+  ADD KEY `Patient_ID` (`Patient_ID`),
+  ADD KEY `Doctor_ID` (`Doctor_ID`),
+  ADD KEY `Form_Type` (`Form_Type`);
+
+--
+-- Indexes for table `Standard_Information`
+--
+ALTER TABLE `Standard_Information`
+  ADD PRIMARY KEY (`Standard_Info_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Administrator`
+--
+ALTER TABLE `Administrator`
+  MODIFY `Admin_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `Completed_Forms`
+--
+ALTER TABLE `Completed_Forms`
+  MODIFY `Completed_Form_ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `Doctor`
+--
+ALTER TABLE `Doctor`
+  MODIFY `Doctor_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `Form_Details`
+--
+ALTER TABLE `Form_Details`
+  MODIFY `Form_Details_ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `Form_Types`
+--
+ALTER TABLE `Form_Types`
+  MODIFY `Form_Type_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `jsmith22_table`
+--
+ALTER TABLE `jsmith22_table`
+  MODIFY `Doctors_Patient_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `Patient`
+--
+ALTER TABLE `Patient`
+  MODIFY `Patient_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `Requested_Forms`
+--
+ALTER TABLE `Requested_Forms`
+  MODIFY `Requested_Form_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `Standard_Information`
+--
+ALTER TABLE `Standard_Information`
+  MODIFY `Standard_Info_ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Completed_Forms`
+--
+ALTER TABLE `Completed_Forms`
+  ADD CONSTRAINT `completed_forms_ibfk_1` FOREIGN KEY (`Patient_ID`) REFERENCES `Patient` (`Patient_ID`),
+  ADD CONSTRAINT `completed_forms_ibfk_2` FOREIGN KEY (`Doctor_ID`) REFERENCES `Doctor` (`Doctor_ID`),
+  ADD CONSTRAINT `completed_forms_ibfk_3` FOREIGN KEY (`Details_ID`) REFERENCES `Form_Details` (`Form_Details_ID`);
+
+--
+-- Constraints for table `Form_Details`
+--
+ALTER TABLE `Form_Details`
+  ADD CONSTRAINT `form_details_ibfk_1` FOREIGN KEY (`Standard_Info_ID`) REFERENCES `Standard_Information` (`Standard_Info_ID`),
+  ADD CONSTRAINT `form_details_ibfk_2` FOREIGN KEY (`Form_Type_ID`) REFERENCES `Form_Types` (`Form_Type_ID`);
+
+--
+-- Constraints for table `jsmith22_table`
+--
+ALTER TABLE `jsmith22_table`
+  ADD CONSTRAINT `jsmith22_table_ibfk_1` FOREIGN KEY (`ReferenceID`) REFERENCES `Patient` (`Patient_ID`);
+
+--
+-- Constraints for table `Requested_Forms`
+--
+ALTER TABLE `Requested_Forms`
+  ADD CONSTRAINT `requested_forms_ibfk_1` FOREIGN KEY (`Patient_ID`) REFERENCES `Patient` (`Patient_ID`),
+  ADD CONSTRAINT `requested_forms_ibfk_2` FOREIGN KEY (`Doctor_ID`) REFERENCES `Doctor` (`Doctor_ID`),
+  ADD CONSTRAINT `requested_forms_ibfk_3` FOREIGN KEY (`Form_Type`) REFERENCES `Form_Types` (`Form_Type_ID`);
