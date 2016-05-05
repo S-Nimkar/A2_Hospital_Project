@@ -27,35 +27,36 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <header>
-	<nav class = "nav-bar-container patient_admin_width">
-		<div class="navbar-fixed">
-			<a href="patient_homepage.php" class="sidenavbrand-logo brand-logo center-align tooltipped nav-bar-logo" data-position="right" data-delay="50" data-tooltip="Nimkar Medical Practitioners" >NMP
-			</a>
-			<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only" style="margin-left: 30px;">
-				<i class="material-icons">menu</i>
-			</a>
-		</div>
-	</nav>
-	<ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">
-		<ul>
-			<li class ="logo"><a href="patient_homepage.php" class="sidenav-brandlogo center-align nav-bar-logo " data-position="right" data-delay="50" style=" font-size: 5rem;">NMP
-			</a>
-		</li>
-		<li><a href="patient_profile.php">My Profile</a></li>
-		<ul class="collapsible collapsible-accordion">
-			<li>
-				<a class="collapsible-header">Forms</a>
-				<div class="collapsible-body">
-					<ul>
-						<li><a href="">My Completed Forms</a></li>
-						<li><a href="">Pending Forms</a></li>
-					</ul>
-				</div>
-			</li>
-		</ul>
-		<li><a href="patient_doctors.php">My Doctors</a></li>
-	</ul>
-    <li style="background-color: #669999;"><a href="../Database/logout.php" >Logout</a></li>
+  <nav class = "nav-bar-container patient_admin_width">
+    <div class="navbar-fixed">
+      <a href="patient_homepage.php" class="sidenavbrand-logo brand-logo center-align tooltipped nav-bar-logo" data-position="right" data-delay="50" data-tooltip="Nimkar Medical Practitioners" >NMP
+      </a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only" style="margin-left: 30px;">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+  <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">
+    <ul>
+      <li class ="logo"><a href="patient_homepage.php" class="sidenav-brandlogo center-align nav-bar-logo " data-position="right" data-delay="50" style=" font-size: 5rem;">NMP
+      </a>
+    </li>
+    <li><a href="patient_profile.php">My Profile</a></li>
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Forms</a>
+        <div class="collapsible-body">
+          <ul>
+            <li><a href="patient_my_completed_forms.php">My Completed Forms</a></li>
+            <li><a href="patient_pending_forms.php">Pending Forms</a></li>
+            <li><a href="patient_request_form.php">Submit Form</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <li><a href="patient_doctors.php">My Doctors</a></li>
+  </ul>
+  <li style="background-color: #669999;"><a href="../Database/logout.php" >Logout</a></li>
 </ul>
 </div>
 </header>

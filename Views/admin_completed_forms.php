@@ -4,6 +4,16 @@ if ($_SESSION['active'] != "3") {
 	header('Location: ../Views/server_error.html');
 	die;
 }
+$host="localhost"; // Host name
+$username="root"; // Mysql username
+$password="root"; // Mysql password
+$db_name="Hospital_Database"; // Database name
+
+
+// Connect to server and select databse.
+$dbc = mysqli_connect("$host", "$username", "$password")or die("cannot connect");
+mysqli_select_db($dbc, $db_name) or die("cannot select DB"); 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +84,7 @@ if ($_SESSION['active'] != "3") {
 				<a class="collapsible-header">Forms</a>
 				<div class="collapsible-body">
 					<ul>
-						<li><a href="admin_admin_view.php">Completed Forms</a></li>
+						<li><a href="admin_completed_forms.php">Completed Forms</a></li>
 						<li><a href="admin_view_form_requests.php">Requested Forms</a></li>
 					</ul>
 				</div>
@@ -112,12 +122,13 @@ if ($_SESSION['active'] != "3") {
         		<td>No Current Form Requests.</td>
           </tr>
         </tbody>
+        </table>
         </div>
 			   ";
-        } else{
+        } else {
           echo "
           <div class=\"container registration_success_content mdl-card admin_text patient_admin_width\" >
-              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">Current Requested Forms</p>
+              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">Completed Forms</p>
                <table style=\" margin-left: 20px;\">
                  <thead>
                 <tr>
@@ -127,6 +138,7 @@ if ($_SESSION['active'] != "3") {
               <th data-field=\"surname\">Details ID</th>
               </tr>
         </thead>
+
         <tbody>";
         for ($i=0; $i < $rowcheck; $i++) { 
           mysqli_data_seek($rowcountresult,$i);
@@ -135,11 +147,62 @@ if ($_SESSION['active'] != "3") {
         }
           echo"
         </tbody>
+        </table>
         </div>
          ";
 
         }
 
+      	$completed_forms_sql2 ="SELECT * FROM Form_Details";
+        $rowcountresult2 = mysqli_query($dbc,$completed_forms_sql2);
+
+        $rowcount2 = mysqli_num_rows($rowcountresult2);
+        $rowcheck2 = $rowcount2;
+
+        if ($rowcheck2 == 0){
+        	echo "
+          <div class=\"container registration_success_content mdl-card admin_text patient_admin_width\" >
+              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">No Form Details Found</p>
+               <table style=\" margin-left: 20px;\">
+                 <thead>
+                <tr>
+              <th data-field=\"Form_request_id\">Form Details ID</th>
+              <th data-field=\"user_name\">Info ID</th>
+              <th data-field=\"surname\">Form Type</th>
+              </tr>
+        </thead>
+        <tbody>
+          <tr>
+        		<td>No Current Form Requests.</td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+			   ";
+        } else {
+          echo "
+          <div class=\"container registration_success_content mdl-card admin_text patient_admin_width\" >
+              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">Form Details</p>
+               <table style=\" margin-left: 20px;\">
+                 <thead>
+                <tr>
+              <th data-field=\"Form_request_id\">Form Details ID</th>
+              <th data-field=\"user_name\">Info ID</th>
+              <th data-field=\"surname\">Form Type</th>
+              </tr>
+        </thead>
+        <tbody>";
+        for ($i2=0; $i2 < $rowcheck2; $i2++) { 
+          mysqli_data_seek($rowcountresult2,$i2);
+          $current_row2 = mysqli_fetch_row($rowcountresult2);
+          echo "<tr><td>".$current_row2[0]."</td><td>".$current_row2[1]."</td><td>".$current_row2[2]."</td></tr>";
+        }
+          echo"
+        </tbody>
+		</table>
+        </div>
+         ";
+     }
       ?>
 </body>
 <script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>

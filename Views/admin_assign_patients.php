@@ -86,13 +86,16 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
         <a class="collapsible-header">Forms</a>
         <div class="collapsible-body">
           <ul>
-            <li><a href="admin_admin_view.php">View Completed Forms</a></li>
+            <li><a href="admin_completed_forms.php">Completed Forms</a></li>
+            <li><a href="admin_view_form_requests.php">Requested Forms</a></li>
           </ul>
         </div>
       </li>
     </ul>
   </ul>
   <li style="background-color: #669999;"><a href="../Database/logout.php" >Logout</a></li>
+</ul>
+</div>
 </header>
 <body class="registration_success_background">
 <div class="container registration-container admin_submitbox">

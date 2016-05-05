@@ -47,10 +47,10 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 				<a class="collapsible-header">Forms</a>
 				<div class="collapsible-body">
 					<ul>
-						<li><a href="">My Completed Forms</a></li>
+						<li><a href="doctor_completed_forms.php">My Completed Forms</a></li>
 						<li><a href="doctor_request_form.php">Request Form</a></li>
 						<li><a href="doctor_cancel_request.php">Cancel Request</a></li>
-						<li><a href="">Pending Forms</a></li>
+						<li><a href="doctor_pending_forms">Pending Forms</a></li>
 					</ul>
 				</div>
 			</li>
