@@ -46,9 +46,8 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 				<a class="collapsible-header">Forms</a>
 				<div class="collapsible-body">
 					<ul>
-						<li><a href="patient_my_completed_forms.php">My Completed Forms</a></li>
-						<li><a href="patient_pending_forms.php">Pending Forms</a></li>
-						<li><a href="patient_request_form.php">Submit Form</a></li>
+						<li><a href="">My Completed Forms</a></li>
+						<li><a href="">Pending Forms</a></li>
 					</ul>
 				</div>
 			</li>
@@ -60,12 +59,41 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 </div>
 </header>
 <body class="registration_success_background">
-	<div class="container registration_success_content mdl-card admin_text patientadminbox patient_admin_width" >
-		<p class="registration_success_title " style="margin-left: 20px;"><?php echo"Welcome ". $_SESSION['patientname'].""; ?> </p>
-		<p class="light  registration_success_textmargins ">Hello and welcome to your patient page. From this page you can view the names of the doctors that are in contact with you, view your profile information and also respond to form requests. To navigate to these pages, select one of the links on the left and this will take you too the desired content.</p>
-		<br><p class="light  registration_success_textmargins "> Below you will also see your current pending form requests, to complete these please navigate to the pending form page to request the form that is needed to be filled in.</p>
-	</div>
-
+<div class="container registration-container admin_submitbox">
+    <div class="mdl-card z-depth-0 registration-card mdl-shadow-mobile">
+      <div class="mdl-card__title card-title-registration center-align">
+        <text class="full-width">Requst Form</text>
+      </div>
+      <form name="admin_form" method="post" onsubmit="return validateAssign()" action="../Database/p_request_form.php" >
+        <div class="registration-card-actions">
+        <p>To request a pending form to be filled in, enter the requested form id into the text field below. This will forward you to the form page where you can submit the required information.</p>
+        <br>
+        <?php
+        switch ($_SESSION['assign_result']) {
+                	case "no_exist":
+                		echo "<p> The form request was not found, please check that you have entered the correct form id.";
+                		break;
+                	default:
+                		# code...
+                		break;
+                }        
+                $_SESSION['assign_result'] = "default";
+        ?>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
+            <input class="mdl-textfield__input" type="text" pattern="^[0-9]*$" name="requested_form">
+            <label class="mdl-textfield__label" for="requested_form">Requested Form ID</label>
+            <span class="mdl-textfield__error absolute registration-spans" name="pid-incorrect">Numbers Only</span>
+            <span class="visibility-false absolute" name="pid-length">Input is too long! >11 </span>
+            <span class="visibility-false absolute registration-spans" name="pid-missing">Please enter a ID</span>
+          </div>
+        </div>
+        <div class="registration-card-actions center-align">
+          <button class="mdl-button mdl-js-button mdl-button--raised waves-effect waves-light btn-large submit-button submit-margin-bottom" type="submit" name="submit">Request Form
+          </button>
+        </div>
+      </form>
+    </div>
+    </div>
 		<?php 
 		$patientid = $_SESSION['patientid'];
 		$checkpatientrequest_sql = "SELECT Patient_ID FROM Requested_Forms WHERE Patient_ID = '$patientid'";
@@ -142,4 +170,5 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/material.min.js"></script>
 	<script type="text/javascript" src="../Scripts/patient_homepage.js"></script>
+	<script type="text/javascript" src="../Scripts/p_request_form.js"></script>
 </html>

@@ -74,7 +74,7 @@ if ($_SESSION['active'] != "3") {
 				<a class="collapsible-header">Forms</a>
 				<div class="collapsible-body">
 					<ul>
-						<li><a href="admin_completed_forms.php">Completed Forms</a></li>
+						<li><a href="admin_admin_view.php">Completed Forms</a></li>
 						<li><a href="admin_view_form_requests.php">Requested Forms</a></li>
 					</ul>
 				</div>
@@ -86,11 +86,61 @@ if ($_SESSION['active'] != "3") {
 </div>
 </header>
 <body class="registration_success_background">
-	<div class="container registration_success_content mdl-card admin_text patientadminbox patient_admin_width" >
-		<p class="registration_success_title " style="margin-left: 20px;">Admin Page</p>
-		<p class="light  registration_success_textmargins ">This page will allow you to edit the doctors, patients and admins. You can also view the forms of patients that have been submited to the system</p>
-		<p class="light registration_success_textmargins">Navigate to the pages via the side-nav on the left</p>
-	</div>
+
+<?php
+        $completed_forms_sql ="SELECT * FROM Completed_Forms";
+        $rowcountresult = mysqli_query($dbc,$completed_forms_sql);
+
+        $rowcount = mysqli_num_rows($rowcountresult);
+        $rowcheck = $rowcount;
+
+        if ($rowcheck == 0){
+        	echo "
+          <div class=\"container registration_success_content mdl-card admin_text patient_admin_width\" >
+              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">No Completed Forms Found</p>
+               <table style=\" margin-left: 20px;\">
+                 <thead>
+                <tr>
+              <th data-field=\"Form_request_id\">Completed Forms ID</th>
+              <th data-field=\"user_name\">Patient ID</th>
+              <th data-field=\"first_name\">Doctor ID</th>
+              <th data-field=\"surname\">Details ID</th>
+              </tr>
+        </thead>
+        <tbody>
+          <tr>
+        		<td>No Current Form Requests.</td>
+          </tr>
+        </tbody>
+        </div>
+			   ";
+        } else{
+          echo "
+          <div class=\"container registration_success_content mdl-card admin_text patient_admin_width\" >
+              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">Current Requested Forms</p>
+               <table style=\" margin-left: 20px;\">
+                 <thead>
+                <tr>
+              <th data-field=\"Form_request_id\">Completed Forms ID</th>
+              <th data-field=\"user_name\">Patient ID</th>
+              <th data-field=\"first_name\">Doctor ID</th>
+              <th data-field=\"surname\">Details ID</th>
+              </tr>
+        </thead>
+        <tbody>";
+        for ($i=0; $i < $rowcheck; $i++) { 
+          mysqli_data_seek($rowcountresult,$i);
+          $current_row = mysqli_fetch_row($rowcountresult);
+          echo "<tr><td>".$current_row[0]."</td><td>".$current_row[1]."</td><td>".$current_row[2]."</td><td>".$current_row[3]."</td></tr>";
+        }
+          echo"
+        </tbody>
+        </div>
+         ";
+
+        }
+
+      ?>
 </body>
 <script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>

@@ -54,7 +54,7 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 		</ul>
 		<li><a href="patient_doctors.php">My Doctors</a></li>
 	</ul>
-	<li><a href="../Database/logout.php" style="background-color: #669999;">Logout</a></li>
+  <li style="background-color: #669999;"><a href="../Database/logout.php" >Logout</a></li>
 </ul>
 </div>
 </header>

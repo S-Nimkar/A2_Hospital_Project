@@ -33,7 +33,7 @@ if ($_SESSION['active'] != "2") {
 <div class="container center">
 <form name="skey" onsubmit="return validatekey()" action="../Database/securitykey_validate.php" method='POST'>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label security-key-input">
-        <input class="mdl-textfield__input" type="text" pattern="^[a-zA-Z0-9_.-]*$" name="securitykey">
+        <input class="mdl-textfield__input" type="password" pattern="^[a-zA-Z0-9_.-]*$" name="securitykey">
         <label class="mdl-textfield__label" for="sample3">Security Key</label>
         <span class="mdl-textfield__error security-key-spans relative" name="skey-error">Please enter english letters and numbers only (Maximum length is 16)</span>
       </div>

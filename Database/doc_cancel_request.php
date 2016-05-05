@@ -25,7 +25,7 @@ $doctor_reference_result = mysqli_query($dbc,$getdoctor_references_sql);
 if (mysqli_num_rows($doctor_reference_result) == 1) {
 	$deletefromreference_sql = "DELETE FROM Requested_Forms WHERE Requested_Form_ID = '$reference_id'";
 	mysqli_query($dbc,$deletefromreference_sql);
-	header('Locaiton: ../Views/doctor_homepage.php');
+	header('Location: ../Views/doctor_homepage.php');
 } else{
 	$_SESSION['assign_result'] = 'no_exist';
 	header('Location: ../Views/doctor_cancel_request.php');

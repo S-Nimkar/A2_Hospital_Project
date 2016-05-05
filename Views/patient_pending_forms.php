@@ -11,7 +11,6 @@ $password="root"; // Mysql password
 $db_name="Hospital_Database"; // Database name
 $tbl_name="Patient"; // Table name
 
-
 // Connect to server and select databse.
 $dbc = mysqli_connect("$host", "$username", "$password")or die("cannot connect");
 mysqli_select_db($dbc, $db_name) or die("cannot select DB"); 
@@ -55,59 +54,82 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 		</ul>
 		<li><a href="patient_doctors.php">My Doctors</a></li>
 	</ul>
-    <li style="background-color: #669999;"><a href="../Database/logout.php" >Logout</a></li>
+	<li style="background-color: #669999;"><a href="../Database/logout.php" >Logout</a></li>
 </ul>
 </div>
 </header>
 <body class="registration_success_background">
-<div class="container registration_success_content mdl-card admin_text patientadminbox patient_admin_width" >
-	<p class="registration_success_title " style="margin-left: 20px;">My Profile Information</p>
-	  <table style=" margin-left: 20px;">
-        <thead>
-          <tr>
-              <th data-field="patient_fname">First Name</th>
-              <th data-field="patient_sname">Surname</th>
-              <th data-field="patient_email">Email Address</th>
-              <th data-field="user_name">Username</th>
-              <th data-field="pass_word">Password</th>
-          </tr>
-        </thead>
+		<?php 
+		$patientid = $_SESSION['patientid'];
+		$checkpatientrequest_sql = "SELECT Patient_ID FROM Requested_Forms WHERE Patient_ID = '$patientid'";
+		$patitntrequest_result = mysqli_query($dbc,$checkpatientrequest_sql);
+		if (mysqli_num_rows($patitntrequest_result) == 0) {
+			echo "<div class=\"container registration_success_content mdl-card admin_text patientadminbox patient_admin_width\" >
+				<p class=\"registration_success_title \" style=\"margin-left: 20px;\">Pending forms</p>
+				  <table style=\" margin-left: 20px;\">
+			        <thead>
+			          <tr>
+						<th data-field=\"form_id\">Form ID</th>
+						<th data-field=\"doctor\">Doctor</th>
+			            <th data-field=\"form_type\">Form Type</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			        <tr>
+			        <th> No Forms currently pending
+			        </th>
+			        </tr>
+			        </tbody>
+			        </table>";
+		} else {
+			echo "<div class=\"container registration_success_content mdl-card admin_text patientadminbox patient_admin_width\" >
+				<p class=\"registration_success_title \" style=\"margin-left: 20px;\">Requested forms</p>
+				  <table style=\" margin-left: 20px;\">
+			        <thead>
+			          <tr>
+						<th data-field=\"form_id\">Form ID</th>
+						<th data-field=\"doctor\">Doctor</th>
+			            <th data-field=\"form_type\">Form Type</th>
+			          </tr>
+			        </thead>
+			        <tbody>";
+			$numberofloops = mysqli_num_rows($patitntrequest_result);
 
-        <tbody>
+    		$doctor_info_joinsql ="SELECT Doctor.Name FROM Requested_Forms INNER JOIN Doctor ON Requested_Forms.Doctor_ID=Doctor.Doctor_ID WHERE Patient_ID = '$patientid'";
+    		$form_info_joinsql ="SELECT Form_Types.Form_Type FROM Requested_Forms INNER JOIN Form_Types ON Requested_Forms.Form_Type=Form_Types.Form_Type_ID WHERE Patient_ID = '$patientid'";
+    		$getrequestid_sql = "SELECT Requested_Form_ID FROM Requested_Forms WHERE Patient_ID = '$patientid'";
 
-        <?php
-        	$patientid = $_SESSION['patientid'];
-        	$getpatientinfosql = "SELECT * FROM Patient WHERE Patient_ID = '$patientid'";
-        	$patientinforesult = mysqli_query($dbc, $getpatientinfosql);
-        	$patientinfo = mysqli_fetch_row($patientinforesult);
+        	$patient_result = mysqli_query($dbc, $doctor_info_joinsql);
+        	$form_result = mysqli_query($dbc,$form_info_joinsql);
+        	$requestid_result = mysqli_query($dbc,$getrequestid_sql);
+
+        	for ($i=0; $i < $numberofloops; $i++) { 
+        	mysqli_data_seek($patient_result,$i);
+        	$doctorinfo = mysqli_fetch_row($patient_result);
+        	mysqli_data_seek($form_result,$i);
+        	$forminfo = mysqli_fetch_row($form_result);
+        	mysqli_data_seek($requestid_result,$i);
+        	$requestinfo = mysqli_fetch_row($requestid_result);
+
         	echo "<tr>";
         	echo "
+        	<td>
+        	$requestinfo[0]
+        	</td>
             <td> 
-              $patientinfo[1]
+            $doctorinfo[0]
             </td>
-            <td> 
-              $patientinfo[2]
-            </td>
-        		<td> 
-        			$patientinfo[3]
-        		</td>
-        		<td> 
-        			$patientinfo[4]
-        		</td>
-        		<td> 
-        			$patientinfo[5]
-        		</td>
-        		<td> 
-        			$patientinfo[6]
-        		</td>
+        	<td> 
+        	$forminfo[0]
+        	</td>
         	";
         	echo "</tr>";
-        
+        	}
+        	
+        }
          ?>
         </tbody>
       </table>  
-</div>
-	
 </body>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>

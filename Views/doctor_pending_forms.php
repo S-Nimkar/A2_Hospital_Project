@@ -47,10 +47,10 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 				<a class="collapsible-header">Forms</a>
 				<div class="collapsible-body">
 					<ul>
-						<li><a href="doctor_completed_forms.php">My Completed Forms</a></li>
+						<li><a href="">My Completed Forms</a></li>
 						<li><a href="doctor_request_form.php">Request Form</a></li>
 						<li><a href="doctor_cancel_request.php">Cancel Request</a></li>
-						<li><a href="doctor_pending_forms">Pending Forms</a></li>
+						<li><a href="">Pending Forms</a></li>
 					</ul>
 				</div>
 			</li>
@@ -72,18 +72,11 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 </div>
 </header>
 <body class="registration_success_background">
-	<div class="container registration_success_content mdl-card admin_text patientadminbox patient_admin_width" >
-		<p class="registration_success_title " style="margin-left: 20px;"><?php echo"Welcome ". $_SESSION['doctorname'].""; ?> </p>
-		<p class="light  registration_success_textmargins ">You can view the number of forms that are pending below, where you can see the patient and the form type that is still pending.</p>
-		<p class="light registration_success_textmargins">Navigate to the pages via the side-nav on the left</p>
-	</div>
-	
 		<?php 
 		$currentdoctorusername = $_SESSION['session_user_name'];
 		$getdoctor_idsql = "SELECT Doctor_ID FROM Doctor WHERE Username = '$currentdoctorusername'";
 		$doctorid_result = mysqli_query($dbc,$getdoctor_idsql);
 		$currentdoctorid = mysqli_fetch_row($doctorid_result);
-		$_SESSION['doctorid'] = $currentdoctorid[0];
 		$currentrequestedforms_sql ="SELECT * FROM Requested_Forms WHERE Doctor_ID = '$currentdoctorid[0]'";
 		$currentrequestedform_result = mysqli_query($dbc,$currentrequestedforms_sql); 
 		if (mysqli_num_rows($currentrequestedform_result) == 0) {
