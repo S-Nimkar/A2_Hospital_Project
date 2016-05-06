@@ -23,6 +23,13 @@ function validateForm() {
         default:
             jQuery("span[name='date_of_birth-missing']").removeClass('mdl-textfield__error visibility-true-registrationpage ')
     }
+    var res = date_of_birth.charAt(6) + date_of_birth.charAt(7) + date_of_birth.charAt(8) + date_of_birth.charAt(9);
+    if (res > 2016){
+        jQuery("span[name='date_of_birth-tolarge']").addClass('mdl-textfield__error visibility-true-registrationpage ')
+            return false;
+    } else {
+        jQuery("span[name='date_of_birth-tolarge']").removeClass('mdl-textfield__error visibility-true-registrationpage ')
+    }
     if (home_number.length > 14){
     	jQuery("span[name='home_number-length']").addClass('mdl-textfield__error visibility-true-registrationpage mdl-textfield__error')
         return false

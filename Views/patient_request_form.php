@@ -74,6 +74,9 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
                 	case "no_exist":
                 		echo "<p> The form request was not found, please check that you have entered the correct form id.";
                 		break;
+                		case "expire":
+                		echo "<p> The form request has expired please re-enter the requestid ID.";
+                		break;
                 	default:
                 		# code...
                 		break;

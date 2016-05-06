@@ -1,10 +1,3 @@
-$(document).ready(function() {
-
-    $('.tooltipped').tooltip({
-        delay: 50
-    });
-});
-
 function validateForm() {
     var firstname = document.forms["registration_form"]["first_name"].value;
     var surname = document.forms["registration_form"]["surname"].value;

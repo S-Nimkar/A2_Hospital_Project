@@ -10,8 +10,6 @@ $username="root"; // Mysql username
 $password="root"; // Mysql password
 $db_name="Hospital_Database"; // Database name
 
-
-
 // Connect to server and select databse.
 $dbc = mysqli_connect("$host", "$username", "$password")or die("cannot connect");
 mysqli_select_db($dbc, $db_name) or die("cannot select DB"); 
@@ -34,7 +32,6 @@ if (mysqli_num_rows($returned_doctoridresult) != 1){
 	$doctor_username = mysqli_fetch_row($returned_doctoridresult);
 	$doctor_tablename = $doctor_username[0];
 	$doctor_tablename .= "_table";
-
 }
 
 $checkpatientexists = "SELECT Patient_ID FROM Patient WHERE Patient_ID = '$Patient_id'";

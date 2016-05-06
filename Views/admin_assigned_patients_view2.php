@@ -103,24 +103,9 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
   
                <table style=\" margin-left: 20px;\">
                  <thead>
-                <tr>
-              <th data-field=\"doctor_patient_id\">Doctor Patient ID</th>
-              <th data-field=\"user_name\">Reference ID</th>
-              <th data-field=\"first_name\">First Name</th>
-              <th data-field=\"surname\">Surame</th>
-              </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-              <td>NO DOCTORS</td>
-               </tr>
-        </tbody>
-        </div>
-      ";
+                <tr><th data-field=\"doctor_patient_id\">Doctor Patient ID</th><th data-field=\"user_name\">Reference ID</th><th data-field=\"first_name\">First Name</th><th data-field=\"surname\">Surame</th></tr>
+        </thead><tbody><tr><td>NO DOCTORS</td></tr></tbody></div> ";
         }
-
         $getdoctoridsql = "SELECT Doctor_ID FROM Doctor";
 
         $doctorid = mysqli_query($dbc,$getdoctoridsql);
@@ -132,7 +117,6 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
           $currentid = mysqli_fetch_row($doctorid);
           $getdoctorsnamesql ="SELECT Name FROM Doctor WHERE Doctor_ID = '$currentid[0]'" ;
           $gettablenamesql ="SELECT Username FROM Doctor WHERE Doctor_ID = '$currentid[0]'" ;
-
           $doctorname = mysqli_query($dbc,$getdoctorsnamesql);
           $table_name = mysqli_query($dbc,$gettablenamesql);
 
@@ -147,7 +131,6 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
           $current_uname = mysqli_fetch_row($table_name);
           $current_tname = $current_uname[0];
           $current_tname .= "_table";
-
           $getdoctortblsql = "SELECT * FROM $current_tname";
           $doctor_tblresult = mysqli_query($dbc, $getdoctortblsql);
 
@@ -163,30 +146,15 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
   
                <table style=\" margin-left: 20px;\">
                  <thead>
-                <tr>
-                <th> Referential ID </th>
-                <th>Patient ID </th>
-                <th>Patient Name</th>
-              </tr>
-        </thead>
-        <tbody>
-        ";
-
+                <tr><th> Referential ID </th><th>Patient ID </th><th>Patient Name</th></tr></thead><tbody>";
         for ($i2 =0; $i2 <= $currentnumrows ; $i2 ++) { 
           mysqli_data_seek($doctor_tblresult,$i2);
           $current_dtable_row= mysqli_fetch_row($doctor_tblresult);
           if ($currentnumrows == 0 ){
             echo"
-          <tr>
-          <th>
-          No Patients assigned to doctor.
-          </th>
-          </tr>
-          ";
-
+          <tr><th>No Patients assigned to doctor.</th></tr>";
           break;
           }
-
           $dpid = $current_dtable_row[0];
           $refid = $current_dtable_row[1];
           $currentpatientname = "";
@@ -198,23 +166,9 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
           $currentpatientname .= " ";
           $currentpatientname .= $current_patientname_row[1];
 
-          echo"
-          <tr>
-          <th>
-          $dpid
-          </th>
-          <th>
-          $refid
-          </th>
-          <th>
-          $currentpatientname
-          </th>
-          </tr>
-
-          ";
+          echo"<tr><th>$dpid</th><th>$refid</th><th>$currentpatientname</th></tr>";
         }
         $i2 = 0;
-
         echo "
         </tbody>
         </table>
@@ -224,7 +178,6 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
           }
           $currentrow  = ($currentrow + 1);
             }
-
             if ($tablescreated ==0) {
               echo "
                 <div class=\"container registration_success_content mdl-card admin_text patientadminbox patient_admin_width\" style =\" margin-top: 4%;  min-height: 100px; \">
@@ -233,7 +186,6 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
               ";
             }
       ?>
-  
 </body>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>

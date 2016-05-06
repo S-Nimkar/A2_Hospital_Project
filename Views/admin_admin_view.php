@@ -4,14 +4,11 @@ if ($_SESSION['active'] != "3") {
 	header('Location: ../Views/server_error.html');
 	die;
 }
-
-
 $host="localhost"; // Host name
 $username="root"; // Mysql username
 $password="root"; // Mysql password
 $db_name="Hospital_Database"; // Database name
 $tbl_name="Administrator"; // Table name
-
 
 // Connect to server and select databse.
 $dbc = mysqli_connect("$host", "$username", "$password")or die("cannot connect");
@@ -26,7 +23,6 @@ $dbase_username = mysqli_query($dbc, $dbase_username_get);
 $dbase_password = mysqli_query($dbc, $dbase_password_get);
 $dbase_id = mysqli_query($dbc, $dbase_id_get);
 $dbase_skey = mysqli_query($dbc, $dbase_skey_get);
-
 $rowcountresult = mysqli_query($dbc, $dbase_id_get);
 
 ?>
@@ -101,8 +97,6 @@ $rowcountresult = mysqli_query($dbc, $dbase_id_get);
 
 </header>
 <body class="registration_success_background">
-
-
 <div class="container registration_success_content mdl-card admin_text patientadminbox patient_admin_width" >
 	<p class="registration_success_title " style="margin-left: 20px;">Administrators</p>
 	  <table style=" margin-left: 20px;">
@@ -114,11 +108,8 @@ $rowcountresult = mysqli_query($dbc, $dbase_id_get);
               <th data-field="skey">Security Key</th>
           </tr>
         </thead>
-
         <tbody>
-
         <?php
-
         $rowcount = mysqli_num_rows($rowcountresult);
         $rowcheck = $rowcount;
         if ($rowcheck = 0){
@@ -161,10 +152,8 @@ $rowcountresult = mysqli_query($dbc, $dbase_id_get);
         }
          ?>
         </tbody>
-      </table>
-            
+      </table>      
 </div>
-	
 </body>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>

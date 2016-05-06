@@ -1,10 +1,16 @@
 <?php 
 session_start();
-if ($_SESSION['active'] != "4" and $_SESSION['requestpage'] != "true") {
+if ($_SESSION['active'] != "4" ) {
 	header('Location: ../Views/server_error.html');
 	die;
 	//forward to server generic error access
 }
+if ($_SESSION['requestpage'] != "true") {
+	$_SESSION['assign_result'] = 'expire';
+	header('Location: ../Views/patient_request_form.php');
+	die;
+}
+$_SESSION['requestpage'] = 'default';
 $host="localhost"; // Host name
 $username="root"; // Mysql username
 $password="root"; // Mysql password
@@ -85,7 +91,8 @@ $form_name = mysqli_fetch_row($formname_result);
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
 						<input class="mdl-textfield__input" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" name="date_of_birth">
 						<label class="mdl-textfield__label" for="date_of_birth">Date of birth</label>
-						<span class="mdl-textfield__error absolute registration-spans" name="date_of_birth-incorrect">Years from 1900 to 9999 are valid. Only DD/MM/YYYY</span>
+						<span class="mdl-textfield__error absolute registration-spans" name="date_of_birth-incorrect">Years from 1900 to 2016 are valid. Only DD/MM/YYYY</span>
+						<span class=" visibility-false absolute " name="date_of_birth-tolarge">Years from 1900 to 2016 are valid. Only DD/MM/YYYY</span>
 						<span class=" visibility-false absolute " name="date_of_birth-missing">Please enter a Date of birth</span>
 					</div>
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
@@ -105,6 +112,7 @@ $form_name = mysqli_fetch_row($formname_result);
 						<label class="mdl-textfield__label" for="postcode">Postcode</label>
 						<span class="mdl-textfield__error absolute registration-spans" name="postcode-incorrect">Numbers only</span>
 						<span class="visibility-false absolute" name="postcode-length">Please input between 6 and 12 numbers, your home postcode. </span>
+						<br>
 						<br>
 					</div>
 
