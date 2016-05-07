@@ -124,10 +124,17 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
             echo "
             <p>Patient already exists in doctors database</p>
             ";
+            break
+            case 'already_exits':
+            echo "
+            <p>Patient already exists in doctors database</p>
+            ";
             break;
-          }
-          $_SESSION['assign_result'] = 'default';
 
+          }
+
+          $_SESSION['assign_result'] = 'default';
+          
         ?>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
             <input class="mdl-textfield__input" type="text" pattern="^[0-9]*$" name="patientid">

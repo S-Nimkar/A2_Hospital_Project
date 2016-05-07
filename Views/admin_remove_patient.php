@@ -82,7 +82,7 @@ if ($_SESSION['active'] != "3") {
       <div class="mdl-card__title card-title-registration center-align">
         <text class="full-width">Remove Patient</text>
       </div>
-      <form name="admin_form" method="post" onsubmit="return validateDeleteID()" action="../Database/remove_patientw.php" >
+      <form name="admin_form" method="post" onsubmit="return validateDeleteID()" action="../Database/remove_patient.php" >
         <div class="registration-card-actions">
         <p style="font-size: 2rem;color: rgba(255, 0, 0, 0.82)">!!!PLEASE NOTE!!!</p>
         <p>This function is added to handle errors that have occured in the database and need to be removed.</p>
@@ -95,7 +95,14 @@ if ($_SESSION['active'] != "3") {
           <p>Removal Failure</p>
           ";
         }
+        if ($_SESSION['removal'] == "restrict") {
+            echo "
+            <p>Cannot delete patient as this patient has a form referenced to them.</p>
+            ";
+          }
 
+        $_SESSION['removal'] = 'default';
+        echo $_SESSION['removal'];
         ?>
         <br>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">

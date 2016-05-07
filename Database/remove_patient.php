@@ -25,8 +25,13 @@ $delete_from_patient_table ="DELETE FROM $tbl_name WHERE Patient_ID ='$patientid
 $checked_id = mysqli_query($dbc, $idchecksql);
 
 if (mysqli_num_rows($checked_id) == 1 ){
-  mysqli_query($dbc, $delete_from_patient_table);
-  header('Location: ../Views/admin_patient_view.php');
+  if(mysqli_query($dbc, $delete_from_patient_table)){
+	header('Location: ../Views/admin_patient_view.php');
+} else {
+	$_SESSION['removal'] = 'restrict';
+	header('Location: ../Views/admin_remove_patient.php');
+}
+
 } else {
   //noworking
   $_SESSION['removal'] = 'fail';

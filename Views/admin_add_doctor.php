@@ -86,7 +86,7 @@ if ($_SESSION['active'] != "3") {
         <div class="registration-card-actions">
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
-            <input class="mdl-textfield__input" type="text" pattern="^[a-zA-Z0-9_.-]*$" name="wholename">
+            <input class="mdl-textfield__input" type="text" pattern="^[a-zA-Z_-]*$" name="wholename">
             <label class="mdl-textfield__label" for="name">Name</label>
             <span class="mdl-textfield__error absolute registration-spans" name="name-incorrect">English letters and numbers only,Use _ to seperate words</span>
             <span class="visibility-false absolute" name="name-length">Input is too long! >37 </span>
@@ -107,7 +107,7 @@ if ($_SESSION['active'] != "3") {
             <span class="visibility-false absolute registration-spans" name="password-missing">Please enter a Password</span>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
-            <input class="mdl-textfield__input" type="text" pattern="^[a-zA-Z0-9_.-]*$" name="skey">
+            <input class="mdl-textfield__input" type="password" pattern="^[a-zA-Z0-9_.-]*$" name="skey">
             <label class="mdl-textfield__label" for="skey">SecurityKey</label>
             <span class="mdl-textfield__error absolute registration-spans" name="skey-incorrect">English letters and numbers only</span>
             <span class="visibility-false absolute" name="skey-length">Input is too long! >16 </span>

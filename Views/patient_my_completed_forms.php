@@ -59,21 +59,41 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
 </div>
 </header>
 <body class="registration_success_background">
-	<div class="container registration-container admin_submitbox">
-    <div class="mdl-card z-depth-0 registration-card mdl-shadow-mobile">
-      <div class="mdl-card__title card-title-registration center-align">
-        <text class="full-width">My Completed Forms</text>
-      </div>
-        <div class="registration-card-actions">
         <?php
         $patientid = $_SESSION['patientid'];
         $getmyforms_sql = "SELECT * FROM Completed_Forms WHERE Patient_ID = '$patientid'";
         $completedforms_result = mysqli_query($dbc,$getmyforms_sql);
-        echo "<p style=\"font-size: 3rem; margin-top: 40px; \">You have completed ".mysqli_num_rows($completedforms_result). " Forms";
+        $numberofcompletedforms = mysqli_num_rows($completedforms_result);
+        if ($numberofcompletedforms != 0) {
+        	echo "<div class=\"container registration_success_content mdl-card admin_text patientadminbox patient_admin_width\" >
+				<p class=\"registration_success_title \" style=\"margin-left: 20px;\">My Completed Forms</p>
+				  <table style=\" margin-left: 20px;\">
+			        <thead>
+			          <tr><th data-field=\"form_id\">Compeleted Form ID</th>
+						<th data-field=\"doctor\">Doctor</th>
+			            <th data-field=\"form_type\">Form Type</th></tr>
+			        </thead>
+			        <tbody>";
+        	for ($i=0; $i < $numberofcompletedforms ; $i++) { 
+        		mysqli_data_seek($completedforms_result,$i);
+        		$currentcompeltedform_rowset = mysqli_fetch_row($completedforms_result);
+        		$curredntformid = $currentcompeltedform_rowset[0];
+        		$curredntdoctorid = $currentcompeltedform_rowset[2];
+        		$curredntdetailsid = $currentcompeltedform_rowset[3];
+        		$getdoctorsname_sql = "SELECT Name FROM Doctor WHERE Doctor_ID = '$curredntdoctorid'";
+        		$getformtypeid_sql = "SELECT Form_Type_ID FROM Form_Details WHERE Form_Details_ID = '$curredntdetailsid'";
+        		$formtype_id = mysqli_fetch_row(mysqli_query($dbc,$getformtypeid_sql));
+				$getformname_sql = "SELECT Form_Type FROM Form_Types Where Form_Type_ID = '$formtype_id[0]'";
+				$formtype_name = mysqli_fetch_row(mysqli_query($dbc,$getformname_sql));
+        		$doctorsname = mysqli_fetch_row(mysqli_query($dbc,$getdoctorsname_sql));
+        		echo "<tr><td>$curredntformid</td><td>$doctorsname[0]</td><td>$formtype_name[0]</td>";
+        	}
+        	echo "</tbody></table>";
+        } else {
+        	echo "<div class=\"container registration_success_content mdl-card admin_text patientadminbox patient_admin_width\" >
+				<p class=\"registration_success_title \" style=\"margin-left: 20px;\">No Forms Compelted Yet</p>";
+        }
         ?>
-        </div>
-    </div>
-    </div>
 </body>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/jquery-2.2.1.min.js"></script>
 	<script type="text/javascript" src="../Scripts/Minified-Scripts/materialize.min.js"></script>

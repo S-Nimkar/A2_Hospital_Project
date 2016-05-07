@@ -88,6 +88,12 @@ if ($_SESSION['active'] != "3") {
         <p>This function is added to handle errors that have occured in the database and need to be removed.</p>
         <p>NEVER REMOVE a doctor that is in use as the doctors id is linked with the form and is used to link to them</p>
         <p> To delete a doctor enter the id and the doctor will be deleted and the table connected to him also droped</p>
+               <?php 
+        	if ($_SESSION['removal'] == "fail") {
+        		echo "<p style =\"color: red;\"> The doctor removal could not be completed, please check that doctor you wish to remove exists.";
+        	}
+        	$_SESSION['removal'] ='default'
+        ?>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">
             <input class="mdl-textfield__input" type="text" pattern="^[0-9]*$" name="id">
             <label class="mdl-textfield__label" for="id">Doctors ID</label>

@@ -126,7 +126,6 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
         	";
         	echo "</tr>";
         	}
-        	
         }
          ?>
         </tbody>
