@@ -100,9 +100,7 @@ if ($_SESSION['active'] != "3") {
             <p>Cannot delete patient as this patient has a form referenced to them.</p>
             ";
           }
-
-        $_SESSION['removal'] = 'default';
-        echo $_SESSION['removal'];
+          $_SESSION['removal'] = 'default';
         ?>
         <br>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-floating-text registration-text-inputs registration-input-widths registration-right">

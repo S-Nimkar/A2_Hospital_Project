@@ -124,7 +124,7 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
             echo "
             <p>Patient already exists in doctors database</p>
             ";
-            break
+            break;
             case 'already_exits':
             echo "
             <p>Patient already exists in doctors database</p>
@@ -167,7 +167,7 @@ mysqli_select_db($dbc, $db_name) or die("cannot select DB");
         if ($rowcheck = 0){
           echo "
           <div class=\"container registration_success_content mdl-card admin_text patient_admin_width\" >
-              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">Administrators</p>
+              <p class=\"registration_success_title \" style=\"margin-left: 20px;\">Doctors</p>
   
                <table style=\" margin-left: 20px;\">
                  <thead>

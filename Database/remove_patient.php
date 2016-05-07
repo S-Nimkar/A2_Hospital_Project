@@ -20,11 +20,12 @@ $patientid = $_POST['id'];
 
 $idchecksql ="SELECT Patient_ID FROM $tbl_name WHERE Patient_ID = '$patientid' ";
 
-$delete_from_patient_table ="DELETE FROM $tbl_name WHERE Patient_ID ='$patientid'";
+$delete_from_patient_table ="DELETE FROM Patient WHERE Patient_ID ='$patientid'";
 
 $checked_id = mysqli_query($dbc, $idchecksql);
 
 if (mysqli_num_rows($checked_id) == 1 ){
+
   if(mysqli_query($dbc, $delete_from_patient_table)){
 	header('Location: ../Views/admin_patient_view.php');
 } else {
